@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashing Background</title>
+    <style>
+        :root {
+            --glow-color: #00ff00;
+        }
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10em;
+            font-family: 'Courier New', Courier, monospace;
+            position: relative;
+            overflow: hidden;
+            background-color: black;
+        }
+        .text {
+            position: absolute;
+            color: var(--glow-color);
+            text-shadow: 0 0 20px var(--glow-color), 0 0 30px var(--glow-color);
+            animation: textBlink 1s infinite alternate;
+        }
+        @keyframes textBlink {
+            0% {
+                opacity: 1;
+                color: var(--glow-color);
+            }
+            50% {
+                opacity: 0.5;
+                color: navy;
+            }
+            100% {
+                opacity: 1;
+                color: var(--glow-color);
+            }
+        }
+        .paint-effect, .ripple-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            opacity: 0;
+            filter: blur(0);
+            mix-blend-mode: screen;
+        }
+
+         .glow-core {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            opacity: 0;
+            filter: blur(0);
+            mix-blend-mode: screen;
+        }
+
+        @keyframes paintRipple {
+            0% {
+                transform: scale(0.5);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+        .ripple-effect {
+            border: 2px solid var(--glow-color);
+            animation: ripple 5s ease-in-out infinite;
+        }
+        @keyframes ripple {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(5);
+                opacity: 0;
+            }
+        }
+        .glow-core {
+            background: radial-gradient(circle at center, var(--glow-color) 0%, transparent 70%);
+            animation: glowCore 6s ease-in-out infinite;
+        }
+        @keyframes glowCore {
+            0% {
+                opacity: 0.5;
+                filter: blur(15px);
+            }
+            100% {
+                opacity: 0;
+                filter: blur(30px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="text">fl0043R</div>
+    <div class="paint-effect"></div>
+    <div class="ripple-effect"></div>
+    <div class="glow-core"></div>
+</body>
+</html>
